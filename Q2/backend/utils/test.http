@@ -1,0 +1,35 @@
+GET http://localhost:3000/helloworld
+
+###
+
+GET http://localhost:3000/events
+
+### 1. Trigger a Low Priority Event
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+  "type": "message",
+  "message": "test low priority message",
+  "priority": "low"
+}
+
+### 2. Trigger a Normal Priority Event
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+  "type": "message",
+  "message": "test normal priority message",
+  "priority": "normal"
+}
+
+### 3. Trigger a High Priority Event (Alert)
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+  "type": "message",
+  "message": "test high priority message",
+  "priority": "high"
+}

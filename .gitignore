@@ -1,0 +1,5 @@
+**/node_modules
+**/*.del
+**/.del
+**/_del
+**/*.log
