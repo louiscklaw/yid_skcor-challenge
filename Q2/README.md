@@ -68,6 +68,7 @@ $ npm run serve
 1. What did you intentionally leave out that you would add for production?
 
    A:
-   // TODO: better error handling, need further clarification. may be 500 ?
 
-   // TODO: refactor `3000` to environment variable ? docker ?
+   // TODO: better general error handling, need further clarification. may be 500 ?
+
+   // TODO: refactor backend server port `3000` to environment variable ? docker ?
