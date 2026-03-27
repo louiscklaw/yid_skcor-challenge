@@ -1,6 +1,6 @@
 # yid_skcor challenge
 
-yid_skcor challenge
+yid_skcor challenge, the name like this was for security purpose. please do ask me when you want to know more.
 
 Submission:
 Public Git repository with a clear README explaining setup and your decisions.
