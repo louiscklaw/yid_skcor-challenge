@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 please see _docs for some sample screen capture
 
+This is a plain webpage with responsive feature for demo. More complex design can be built upon request.
+
 ## start Development server
 
 ### backend
