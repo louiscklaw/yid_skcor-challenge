@@ -1,5 +1,7 @@
 # Q2Frontend
 
+![](./_doc/test_w_message.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
 please see _docs for some sample screen capture
