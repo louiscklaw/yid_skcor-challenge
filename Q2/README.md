@@ -52,7 +52,7 @@ $ npm run serve
 
 1. Which real-time approach did you choose and why? What are the trade-offs you considered?
 
-   A: websocket, compared to another codes seems more popular and plenty of libraries. given that there are no show-stopper for the websocket i will choose websocket (the more library available the less chance we hit the wall(problem))
+   A: websocket, compared to another codes seems more popular and plenty of libraries. given that there are no show-stopper for the websocket i will choose websocket (in reality, the more library available the less chance we hit the wall(problem))
    ![](./_doc/ws_vs_sse.png)
 
 1. The priority-based eviction logic — how would this change if we needed to persist events to a database?
