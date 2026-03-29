@@ -74,6 +74,8 @@ A: done
 
    <img src="./Q2/_doc/Q2_04_index.png" height="400">
 
+   <img src="./Q2/_doc/Q2_04_1_index.png" height="400">
+
    • REQ_05: Handle the 429 case gracefully in the UI
 
    <img src="./Q2/_doc/Q2_05_error_429.gif" height="400">

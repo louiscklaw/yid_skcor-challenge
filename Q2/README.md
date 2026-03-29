@@ -80,3 +80,5 @@ $ npm run serve
 
    // TODO: refactor backend server port `3000` to environment variable ? docker ?
    depends on the actual production environment. different environment have different implementation of choice.
+
+   connection state tracking, reconnect when network available.
