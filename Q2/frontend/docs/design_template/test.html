@@ -1,0 +1,377 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Event Dashboard</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#6e9fff",
+              surface: "#f5f7f9",
+              "primary-fixed-dim": "#5391ff",
+              "secondary-fixed": "#ffc885",
+              "on-secondary-fixed": "#4c2e00",
+              "surface-variant": "#d9dde0",
+              "error-container": "#fb5151",
+              "surface-bright": "#f5f7f9",
+              "secondary-dim": "#714600",
+              "on-secondary-fixed-variant": "#724700",
+              "on-secondary": "#fff0e3",
+              "outline-variant": "#abadaf",
+              tertiary: "#b51621",
+              "on-surface": "#2c2f31",
+              "on-tertiary-fixed": "#3a0003",
+              "on-error": "#ffefee",
+              "on-primary-fixed": "#000000",
+              "tertiary-container": "#ff928b",
+              "secondary-container": "#ffc885",
+              "error-dim": "#9f0519",
+              "on-error-container": "#570008",
+              "surface-tint": "#0057bd",
+              "primary-fixed": "#6e9fff",
+              "tertiary-dim": "#a30117",
+              "on-primary": "#f0f2ff",
+              error: "#b31b25",
+              "surface-container": "#e5e9eb",
+              "inverse-surface": "#0b0f10",
+              "tertiary-fixed": "#ff928b",
+              "secondary-fixed-dim": "#ffb554",
+              "on-tertiary-container": "#69000a",
+              "inverse-primary": "#4d8eff",
+              background: "#f5f7f9",
+              "surface-container-low": "#eef1f3",
+              "on-background": "#2c2f31",
+              "surface-container-high": "#dfe3e6",
+              "surface-dim": "#d0d5d8",
+              "on-primary-container": "#002150",
+              "tertiary-fixed-dim": "#ff7b74",
+              secondary: "#815100",
+              "on-primary-fixed-variant": "#002a62",
+              primary: "#0057bd",
+              "inverse-on-surface": "#9a9d9f",
+              outline: "#747779",
+              "on-secondary-container": "#663f00",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#79000e",
+              "primary-dim": "#004ca6",
+              "on-tertiary": "#ffefed",
+              "surface-container-highest": "#d9dde0",
+              "on-surface-variant": "#595c5e",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .material-symbols-outlined {
+          font-variation-settings:
+            "FILL" 0,
+            "wght" 400,
+            "GRAD" 0,
+            "opsz" 24;
+        }
+        .drawer-state:checked ~ #event-drawer {
+          transform: translateY(0);
+        }
+        .drawer-state:checked ~ #drawer-overlay {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .drawer-state:checked ~ #fab-trigger {
+          transform: rotate(135deg);
+          background-color: theme("colors.error");
+        }
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f5f7f9;
+        color: #2c2f31;
+        min-height: 100dvh;
+      }
+      .font-headline {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface relative overflow-x-hidden">
+    <input
+      class="drawer-state hidden peer"
+      id="drawer-toggle"
+      type="checkbox"
+    />
+    <header
+      class="flex justify-between items-center w-full px-6 h-16 sticky top-0 bg-[#f5f7f9]/80 backdrop-blur-md z-30"
+    >
+      <h1
+        class="font-headline font-bold tracking-tighter text-xl text-[#2c2f31]"
+      >
+        Event Dashboard
+      </h1>
+      <div
+        class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-white shadow-sm"
+      >
+        <img
+          alt="Profile"
+          class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7nO7YG8irLJK3cJnm9huAgEj9QY9cJm9KMeYVXlzDybrgownnkZcyJpi8j8sV1BIxqk3PLtxn3O5FY9HJkf-IbVN4foHK6yLZPTdiUjtmJNVD5Uo9be-UI2a2T7qnp6aRtUWuvp3uHIl0X6al_pyCps3uDNnpJieenImiVXsqz-GYmKOULi3AWKFjkHZnBaqbTEkEaivs2esEueSBZchuSY6D94YrXN70VC39NAC_-kNod6Srf6lpEUaOAGjFotKCgziRZWMOkBg"
+        />
+      </div>
+    </header>
+    <main class="px-6 space-y-8 mt-4 pb-32">
+      <section class="grid grid-cols-3 gap-3">
+        <div
+          class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.06)] flex flex-col justify-between h-32"
+        >
+          <span
+            class="font-label text-[10px] font-medium tracking-widest uppercase text-tertiary"
+            >High</span
+          >
+          <span
+            class="font-headline text-3xl font-bold tracking-tighter text-tertiary"
+            >12</span
+          >
+        </div>
+        <div
+          class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.06)] flex flex-col justify-between h-32"
+        >
+          <span
+            class="font-label text-[10px] font-medium tracking-widest uppercase text-secondary"
+            >Medium</span
+          >
+          <span
+            class="font-headline text-3xl font-bold tracking-tighter text-secondary"
+            >05</span
+          >
+        </div>
+        <div
+          class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.06)] flex flex-col justify-between h-32"
+        >
+          <span
+            class="font-label text-[10px] font-medium tracking-widest uppercase text-primary"
+            >Low</span
+          >
+          <span
+            class="font-headline text-3xl font-bold tracking-tighter text-primary"
+            >24</span
+          >
+        </div>
+      </section>
+      <section class="space-y-4">
+        <div class="flex justify-between items-end px-1">
+          <h2
+            class="font-headline text-lg font-semibold tracking-tight text-on-surface"
+          >
+            Live Feed
+          </h2>
+          <span
+            class="font-label text-[10px] font-medium text-primary tracking-widest uppercase bg-primary-container/20 px-2 py-1 rounded"
+            >Real-time</span
+          >
+        </div>
+        <div class="space-y-4">
+          <div
+            class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.04)] relative overflow-hidden active:scale-[0.98] transition-all"
+          >
+            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-tertiary"></div>
+            <div class="flex justify-between items-start">
+              <div class="space-y-2">
+                <span
+                  class="inline-block bg-tertiary-container text-on-tertiary-container text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase"
+                  >Critical Action</span
+                >
+                <h3
+                  class="font-headline text-md font-semibold text-on-surface leading-tight"
+                >
+                  Server Cluster #04 Overheating
+                </h3>
+              </div>
+              <span
+                class="text-[10px] font-medium font-label text-outline uppercase tracking-tighter"
+                >2m ago</span
+              >
+            </div>
+            <p class="mt-3 text-sm text-on-surface-variant font-body">
+              Immediate cooling protocols initiated in data center zone 7B.
+            </p>
+          </div>
+          <div
+            class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.04)] relative overflow-hidden active:scale-[0.98] transition-all"
+          >
+            <div
+              class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary"
+            ></div>
+            <div class="flex justify-between items-start">
+              <div class="space-y-2">
+                <span
+                  class="inline-block bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase"
+                  >Maintenance</span
+                >
+                <h3
+                  class="font-headline text-md font-semibold text-on-surface leading-tight"
+                >
+                  Database Sync Latency
+                </h3>
+              </div>
+              <span
+                class="text-[10px] font-medium font-label text-outline uppercase tracking-tighter"
+                >15m ago</span
+              >
+            </div>
+            <p class="mt-3 text-sm text-on-surface-variant font-body">
+              Cross-region synchronization is operating at 85% efficiency.
+            </p>
+          </div>
+          <div
+            class="group bg-surface-container-lowest p-6 rounded-xl shadow-[0_20px_50px_rgba(44,47,49,0.04)] relative overflow-hidden active:scale-[0.98] transition-all"
+          >
+            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+            <div class="flex justify-between items-start">
+              <div class="space-y-2">
+                <span
+                  class="inline-block bg-primary-container text-on-primary-container text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase"
+                  >Information</span
+                >
+                <h3
+                  class="font-headline text-md font-semibold text-on-surface leading-tight"
+                >
+                  New Admin Logged In
+                </h3>
+              </div>
+              <span
+                class="text-[10px] font-medium font-label text-outline uppercase tracking-tighter"
+                >42m ago</span
+              >
+            </div>
+            <p class="mt-3 text-sm text-on-surface-variant font-body">
+              Admin access granted to Sarah Chen via secure terminal 09.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer class="pt-8 text-center">
+        <p
+          class="font-label text-[10px] font-medium tracking-widest uppercase text-outline-variant"
+        >
+          End of Active Logs
+        </p>
+        <div class="mt-4 flex justify-center space-x-1 opacity-20">
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+        </div>
+      </footer>
+    </main>
+    <label
+      class="fixed inset-0 bg-black/40 backdrop-blur-[2px] z-40 opacity-0 pointer-events-none transition-opacity duration-300"
+      for="drawer-toggle"
+      id="drawer-overlay"
+    ></label>
+    <section
+      class="fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 transform translate-y-full"
+      id="event-drawer"
+    >
+      <div
+        class="bg-surface-container-lowest rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] p-8 pt-4 pb-12 max-w-lg mx-auto border-t border-surface-container-high"
+      >
+        <div class="flex justify-center mb-6">
+          <div class="w-12 h-1.5 bg-surface-container-high rounded-full"></div>
+        </div>
+        <div class="space-y-6">
+          <div class="flex justify-between items-center">
+            <h2
+              class="font-headline text-2xl font-bold tracking-tight text-on-surface"
+            >
+              Log New Event
+            </h2>
+            <label
+              class="p-2 -mr-2 text-outline-variant active:scale-90 transition-transform"
+              for="drawer-toggle"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </label>
+          </div>
+          <div class="space-y-5">
+            <div class="space-y-2">
+              <label
+                class="font-label text-xs font-semibold tracking-wider uppercase text-outline-variant pl-1"
+                >Event Name</label
+              >
+              <input
+                class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 text-base focus:ring-4 focus:ring-primary/10 focus:bg-surface-container-lowest transition-all placeholder:text-outline-variant shadow-sm"
+                placeholder="e.g. System Breach Detected"
+                type="text"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="font-label text-xs font-semibold tracking-wider uppercase text-outline-variant pl-1"
+                >Priority Level</label
+              >
+              <div class="relative">
+                <select
+                  class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 text-base appearance-none focus:ring-4 focus:ring-primary/10 focus:bg-surface-container-lowest transition-all shadow-sm"
+                >
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <button
+              class="w-full bg-primary text-on-primary font-headline font-extrabold py-5 rounded-xl shadow-xl shadow-blue-500/30 active:scale-[0.97] transition-all mt-4 tracking-wider"
+            >
+              SUBMIT EVENT
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <label
+      class="fixed bottom-8 right-6 w-16 h-16 bg-primary text-on-primary rounded-full shadow-[0_12px_36px_rgba(0,87,189,0.35)] flex items-center justify-center active:scale-90 transition-all duration-300 z-[60] cursor-pointer"
+      for="drawer-toggle"
+      id="fab-trigger"
+    >
+      <span
+        class="material-symbols-outlined text-3xl"
+        style="font-variation-settings: &quot;FILL&quot; 1"
+        >add</span
+      >
+    </label>
+  </body>
+</html>

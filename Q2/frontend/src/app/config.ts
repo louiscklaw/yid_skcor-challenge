@@ -2,8 +2,12 @@ const API_BASE_URL = 'http://localhost:3000';
 const EVENTS_ENDPOINT = `${API_BASE_URL}/events`;
 
 const WS_BASE_URL = 'ws://localhost:3000';
-const AFTER_RESET_HELLOWORLD_MESSAGE = 'after_reset_helloworld_message';
-const INITIAL_HELLOWORLD_MESSAGE = 'initial_helloworld_message';
+
+// NOTE: message at the first message text box popup
+const INITIAL_MESSAGE = '';
+
+// NOTE: message after first message text box sent
+const AFTER_RESET_MESSAGE = '';
 
 // REQ_02: Visually distinguish events by priority (your design choice — just make it clear)
 const CSS_MSG_PRIO_LOW_COLOR = 'blue';
@@ -26,8 +30,8 @@ export {
   API_BASE_URL,
   WS_BASE_URL,
   //
-  AFTER_RESET_HELLOWORLD_MESSAGE,
-  INITIAL_HELLOWORLD_MESSAGE,
+  AFTER_RESET_MESSAGE,
+  INITIAL_MESSAGE,
   INITIAL_MESSAGE_PRIORITY,
   //
   MSG_PRIO_LOW,

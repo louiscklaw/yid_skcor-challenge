@@ -60,13 +60,27 @@ A: done
 
    • REQ_01: Display the live event feed, updating in real-time as new events arrive
 
+   <img src="./Q2/_doc/Q2_01.gif" height="400">
+
    • REQ_02: Visually distinguish events by priority (your design choice — just make it clear)
+
+   <img src="./Q2/_doc/Q2_02_index.png" height="400">
 
    • REQ_03: A form to submit new events manually
 
+   <img src="./Q2/_doc/Q2_03_new_message.png" height="400">
+
    • REQ_04: Show a count of events by priority
 
+   <img src="./Q2/_doc/Q2_04_index.png" height="400">
+
    • REQ_05: Handle the 429 case gracefully in the UI
+
+   <img src="./Q2/_doc/Q2_05_error_429.gif" height="400">
+
+## 3 changelog
+
+- 2026-03-29: update frontend styling
 
 ## Further help
 

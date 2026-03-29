@@ -1,0 +1,103 @@
+<!-- REQ_03: A form to submit new events manually -->
+<input class="drawer-state hidden peer" id="drawer-toggle" type="checkbox" #drawerToggle/>
+
+<label
+  class="fixed
+  inset-0
+  bg-black/40
+  backdrop-blur-[2px]
+  z-40
+  opacity-0
+  pointer-events-none
+  transition-opacity
+  duration-300
+  peer-checked:opacity-100
+  peer-checked:pointer-events-auto"
+  for="drawer-toggle"
+  id="drawer-overlay"
+></label>
+
+<section
+  class="fixed bottom-0 left-0 right-0 z-50 transition-transform duration-500 transform translate-y-full"
+  id="event-drawer"
+>
+  <form [formGroup]="contactForm" (ngSubmit)="handleSubmit()" novalidate>
+
+    <div
+      class="bg-surface-container-lowest rounded-t-[2rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] p-8 pt-4 pb-12 max-w-lg mx-auto border-t border-surface-container-high"
+    >
+      <div class="flex justify-center mb-6">
+        <div class="w-12 h-1.5 bg-surface-container-high rounded-full"></div>
+      </div>
+      <div class="space-y-6">
+        <div class="flex justify-between items-center">
+          <h2
+            class="font-headline text-2xl font-bold tracking-tight text-on-surface"
+          >
+           <app-err-too-many-requests></app-err-too-many-requests>
+            New Message
+          </h2>
+          <label
+            class="p-2 -mr-2 text-outline-variant active:scale-90 transition-transform"
+            for="drawer-toggle"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </label>
+        </div>
+        <div class="space-y-5">
+          <div class="space-y-2">
+            <label
+              class="font-label text-xs font-semibold tracking-wider uppercase text-outline-variant pl-1"
+              >Message body</label
+            >
+            <input
+              class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 text-base focus:ring-4 focus:ring-primary/10 focus:bg-surface-container-lowest transition-all placeholder:text-outline-variant shadow-sm"
+              placeholder="e.g. Hello ~"
+              type="text"
+              formControlName="msgBody"
+            />
+          </div>
+          <div class="space-y-2">
+            <label
+              class="font-label text-xs font-semibold tracking-wider uppercase text-outline-variant pl-1"
+              >Priority Level</label
+            >
+            <div class="relative">
+              <select
+                formControlName="msgPrio"
+                class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 text-base appearance-none focus:ring-4 focus:ring-primary/10 focus:bg-surface-container-lowest transition-all shadow-sm"
+              >
+                <option
+                  *ngFor="let msgPrio of msgPrios"
+                  [value]="msgPrio.value"
+                >
+                  {{ msgPrio.viewValue }}
+                </option>
+              </select>
+
+            </div>
+          </div>
+          <button
+            class="w-full bg-primary text-on-primary font-headline font-extrabold py-5 rounded-xl shadow-xl shadow-blue-500/30 active:scale-[0.97] transition-all mt-4 tracking-wider"
+            type="submit"
+          >
+            SUBMIT EVENT
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<label
+  class="fixed bottom-8 right-6 w-16 h-16 bg-primary text-on-primary rounded-full shadow-[0_12px_36px_rgba(0,87,189,0.35)] flex items-center justify-center active:scale-90 transition-all duration-300 z-[60] cursor-pointer"
+  for="drawer-toggle"
+  id="fab-trigger"
+>
+  <span
+    class="material-symbols-outlined text-3xl"
+    style="font-variation-settings: &quot;FILL&quot; 1"
+  >
+    add
+  </span>
+</label>

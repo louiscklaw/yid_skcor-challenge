@@ -1,0 +1,12 @@
+<div *ngIf="notification.activeToast() as toast"
+      class="fixed top-5 right-5 z-50 p-4 rounded-lg shadow-lg text-white transition-all duration-3000"
+      [ngClass]="{
+        'bg-green-500': toast.type === 'success',
+        'bg-red-500': toast.type === 'error',
+        'bg-blue-500': toast.type === 'info'
+      }">
+  <div class="flex items-center gap-2">
+    <span class="font-medium">{{ toast.message }}</span>
+    <button (click)="notification.activeToast.set(null)" class="ml-4 hover:text-gray-200">✕</button>
+  </div>
+</div>

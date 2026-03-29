@@ -1,0 +1,23 @@
+<div
+  class="
+  my-2
+  group bg-surface-container-lowest p-4 rounded shadow-[0_12px_32px_rgba(44,47,49,0.04)] relative overflow-hidden active:scale-[0.99] transition-all"
+>
+  <div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary"></div>
+  <div class="flex justify-between items-start mb-2">
+    <div class="flex items-center gap-2">
+      <span
+        class="inline-block bg-tertiary-container text-on-tertiary-container text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wide uppercase"
+        >High</span
+      >
+      <span
+        class="text-[9px] font-medium font-label text-outline uppercase tracking-tight"
+        ># {{ message.msgTimestamp }}</span
+      >
+    </div>
+    <app-delete-message-button [msg_id]="message.id"></app-delete-message-button>
+  </div>
+  <h3 class="font-headline text-sm font-semibold text-on-surface leading-tight">
+    {{ message.msgBody }}
+  </h3>
+</div>

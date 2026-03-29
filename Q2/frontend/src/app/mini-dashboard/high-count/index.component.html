@@ -1,0 +1,21 @@
+<div
+  class="bg-surface-container-lowest
+  p-4
+  rounded-lg
+  shadow-[0_20px_50px_rgba(44,47,49,0.06)]
+  flex
+  flex-col
+  justify-between h-24"
+  [ngClass]="{'bg-red-500': isActive, 'bg-white-50': !isActive}"
+  (click)="toggleHighFilter()"
+>
+  <span
+    class="font-label text-[10px] font-medium tracking-widest uppercase"
+    [ngClass]="{'text-white': isActive, 'text-tertiary': !isActive}"
+    >High</span
+  >
+  <span class="font-headline text-3xl font-bold tracking-tighter"
+    [ngClass]="{'text-white': isActive, 'text-tertiary': !isActive}"
+    >{{high_count}}</span
+  >
+</div>

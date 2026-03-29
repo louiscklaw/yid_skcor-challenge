@@ -1,0 +1,44 @@
+<!-- err-too-many-requests -->
+<div *ngIf="dialogService.watch$ | async" class="fixed inset-0 z-50 flex items-center justify-center p-4"
+>
+  <div
+    class="fixed inset-0 z-[100] flex items-center justify-center px-6"
+    id="alert-dialog-overlay"
+  >
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-[4px]"></div>
+    <div
+      class="relative w-full max-w-xs bg-surface-container-lowest rounded-xl shadow-[0_24px_48px_rgba(0,0,0,0.2)] p-6 text-center border border-surface-container-high"
+    >
+      <div class="mb-4">
+        <div
+          class="w-12 h-12 bg-error-container/10 text-error rounded-full flex items-center justify-center mx-auto"
+        >
+          <span
+            class="material-symbols-outlined text-3xl"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >warning</span
+          >
+        </div>
+      </div>
+      <h2 class="font-headline text-lg font-bold text-on-surface mb-2">
+        System Alert
+      </h2>
+      <div class="space-y-1 mb-6">
+        <p class="font-label text-sm font-semibold text-error tracking-tight">
+          429: Too Many Requests
+        </p>
+        <p class="font-body text-xs text-on-surface-variant leading-relaxed">
+          You've reached the system rate limit.<br />
+          Please wait a moment before trying again.
+        </p>
+      </div>
+      <label
+        class="block w-full bg-surface-container-high hover:bg-surface-dim text-on-surface font-headline font-bold py-3.5 rounded-lg transition-colors cursor-pointer active:scale-[0.98]"
+        for="alert-toggle"
+        button (click)="dialogService.close()"
+      >
+        Dismiss
+      </label>
+    </div>
+  </div>
+</div>

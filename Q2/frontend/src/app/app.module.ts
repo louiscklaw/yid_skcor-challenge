@@ -1,51 +1,47 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
+
+import { FooterComponent } from './footer/main.component';
+import { NewEventDrawerComponent } from './new-message-drawer/main.component';
+import { EventListComponent } from './message-list/main.component';
+import { MiniDashboardComponent } from './mini-dashboard/main.component';
+import { HeaderComponent } from './header/header.component';
+import { HighCountComponent } from './mini-dashboard/high-count/main.component';
+import { NormalCountComponent } from './mini-dashboard/normal-count/main.component';
+import { LowCountComponent } from './mini-dashboard/low-count/main.component';
+import { HighEventComponent } from './message-list/high-event/main.component';
+import { NormalEventComponent } from './message-list/normal-event/main.component';
+import { LowEventComponent } from './message-list/low-event/main.component';
+import { DeleteEventButtonComponent } from './message-list/delete-event-button/main.component';
+import { ErrTooManyRequestsComponent } from './new-message-drawer/err-too-many-requests/main.component';
+import { DeleteSuccessComponent } from './delete-success/main.component';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatButtonModule } from '@angular/material/button';
-import { MessageTableComponent } from './message-table/message-table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MessageFormInputComponent } from './message-form-input/message-form-input.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { provideHttpClient } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ErrorDialogComponent } from './err-dialog-429/err_dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessageTableComponent,
-    MessageFormInputComponent,
-    //
-    ErrorDialogComponent,
+    FooterComponent,
+    NewEventDrawerComponent,
+    EventListComponent,
+    MiniDashboardComponent,
+    HeaderComponent,
+    HighCountComponent,
+    NormalCountComponent,
+    LowCountComponent,
+    HighEventComponent,
+    NormalEventComponent,
+    LowEventComponent,
+    DeleteEventButtonComponent,
+    ErrTooManyRequestsComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    //
-    MatButtonModule,
-    MatDividerModule,
-    MatIconModule,
-    //
-    MatTableModule,
-    MatPaginatorModule,
-    //
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    //
-    MatSelectModule,
-    //
-    MatDialogModule,
+    DeleteSuccessComponent,
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],

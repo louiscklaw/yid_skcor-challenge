@@ -16,8 +16,15 @@ const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
 const cors = require("cors");
+const { v4: uuidv4 } = require("uuid");
 
-const { ERR_OVERFOW_SC, ERR_ALL_HIGH_PRIO_MSG_SC, ERR_ALL_HIGH_PRIO_MSG, ERR_ALL_HIGH_PRIO_MSG_EXPLAIN, ERR_MISSING_FIELDS_EXPLAIN, MSG_PRIO_LOW, MSG_PRIO_NORMAL, MSG_PRIO_HIGH } = require("./config");
+const { ERR_OVERFOW_SC, ERR_ALL_HIGH_PRIO_MSG_SC, ERR_ALL_HIGH_PRIO_MSG, ERR_ALL_HIGH_PRIO_MSG_EXPLAIN, ERR_MISSING_FIELDS_EXPLAIN } = require("./config");
+
+const drop_and_insert = require("./lib/drop_and_insert");
+const drop_by_first_low_occurrence = require("./lib/drop_by_first_low_occurrence");
+const drop_by_first_normal_occurrence = require("./lib/drop_by_first_normal_occurrence");
+const check_events_all_high = require("./lib/check_events_all_high");
+const broadcast_events_update = require("./lib/broadcast_events_update");
 
 // REQ_003: A maximum of 50 events are kept
 const EVENT_LIST_LEN = 50;
@@ -31,56 +38,6 @@ const server = http.createServer(app); // Create HTTP server
 const wss = new WebSocket.Server({ server }); // Bind WebSocket to it
 
 clients = [];
-
-// REQ_003: A maximum of 50 events are kept —
-//    - when a new event arrives and the buffer is full, the oldest low-priority event is dropped first.
-//    - High-priority events are never dropped — if the buffer is full of only high-priority events, reject the new event with a 429
-function drop_by_first_low_occurrence(events) {
-  let found_idx = -1;
-
-  for (let i = 0; i < events.length; i++) {
-    if (events[i].msgPrio == MSG_PRIO_LOW) {
-      found_idx = i;
-      break;
-    }
-  }
-
-  return found_idx;
-}
-
-// REQ_003: A maximum of 50 events are kept —
-//    - If no low-priority events exist, drop the oldest normal.
-function drop_by_first_normal_occurrence(events) {
-  let found_idx = -1;
-
-  for (let i = 0; i < events.length; i++) {
-    if (events[i].msgPrio == MSG_PRIO_NORMAL) {
-      found_idx = i;
-      break;
-    }
-  }
-
-  return found_idx;
-}
-
-// REQ_003: A maximum of 50 events are kept —
-//    - High-priority events are never dropped — if the buffer is full of only high-priority events, reject the new event with a 429
-function check_events_all_high(events) {
-  let all_high = true;
-
-  for (let i = 0; i < events.length; i++) {
-    if (events[i].msgPrio != MSG_PRIO_HIGH) {
-      all_high = false;
-    }
-  }
-
-  return all_high;
-}
-
-const drop_and_insert = (events, drop_idx, new_event) => {
-  events.splice(drop_idx, 1);
-  events.push(new_event);
-};
 
 // REQ_002: Events are stored in memory (no database required)
 // REQ_003: A maximum of 50 events are kept
@@ -115,10 +72,11 @@ app.post("/events", (req, res) => {
     }
 
     const newEvent = {
+      id: uuidv4(),
       msgType,
       msgBody,
       msgPrio,
-      timestamp: epochTimeInSeconds,
+      msgTimestamp: epochTimeInSeconds,
     };
 
     if (events.length < EVENT_LIST_LEN) {
@@ -145,11 +103,7 @@ app.post("/events", (req, res) => {
     }
 
     // REQ_004: New events are pushed to connected frontends in real-time (your choice: WebSocket, SSE, or polling)
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ events: "updated" }));
-      }
-    });
+    broadcast_events_update(wss);
 
     res.status(200).json({ event: newEvent });
   } catch (error) {
@@ -160,6 +114,23 @@ app.post("/events", (req, res) => {
       res.status(ERR_OVERFOW_SC);
     }
   }
+});
+
+// DELETE endpoint to remove event by id
+app.delete("/events/:id", (req, res) => {
+  const eventId = req.params.id;
+  const eventIndex = events.findIndex((event) => event.id === eventId);
+
+  if (eventIndex === -1) {
+    return res.status(404).json({ error: "Event not found" });
+  }
+
+  events.splice(eventIndex, 1);
+
+  // REQ_004: New events are pushed to connected frontends in real-time
+  broadcast_events_update(wss);
+
+  res.status(200).json({ message: "Event deleted successfully" });
 });
 
 // REQ_004: New events are pushed to connected frontends in real-time (your choice: WebSocket, SSE, or polling)

@@ -1,0 +1,66 @@
+<div class="mt-4">
+  <section class="space-y-4">
+    <div class="flex justify-between items-end px-1">
+      <h2
+        class="font-headline text-lg font-semibold tracking-tight text-on-surface"
+      >
+        Live Events ({{ currentEventListFilter }})
+      </h2>
+
+      <!-- TODO: keep track connection state to drive the `REAL-TIME` incidator -->
+      <!--
+        <span
+          class="font-label text-[10px] font-medium text-primary tracking-widest uppercase bg-primary-container/20 px-2 py-1 rounded"
+          >Real-time</span
+        >
+      -->
+    </div>
+    <div class="space-y-3">
+      <div *ngIf="data.length === 0">
+        <div class="pt-8 flex flex-col items-center gap-8">
+          <div class="text-[30px]">
+            <img src="./assets/louis_smile.png" width="100px" height="100px"/>
+          </div>
+          <p
+            class="font-label text-[15px] font-medium tracking-widest uppercase text-outline-variant"
+          >
+            no events here
+          </p>
+          <div class="mt-4 flex justify-center space-x-1 opacity-20">
+            <div class="w-1 h-1 rounded-full bg-outline"></div>
+            <div class="w-1 h-1 rounded-full bg-outline"></div>
+            <div class="w-1 h-1 rounded-full bg-outline"></div>
+          </div>
+        </div>
+      </div>
+      <ul>
+        <li *ngFor="let message of data">
+          <div *ngIf="message.msgPrio === 'high'">
+            <app-high-event [message]="message"></app-high-event>
+          </div>
+
+          <div *ngIf="message.msgPrio === 'normal'">
+            <app-normal-event [message]="message"></app-normal-event>
+          </div>
+
+          <div *ngIf="message.msgPrio === 'low'">
+            <app-low-event [message]="message"></app-low-event>
+          </div>
+        </li>
+      </ul>
+
+      <div class="pt-8 text-center" *ngIf="data.length != 0">
+        <p
+          class="font-label text-[10px] font-medium tracking-widest uppercase text-outline-variant"
+        >
+          End of Active Logs
+        </p>
+        <div class="mt-4 flex justify-center space-x-1 opacity-20">
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+          <div class="w-1 h-1 rounded-full bg-outline"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

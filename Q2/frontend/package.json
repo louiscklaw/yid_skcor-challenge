@@ -1,23 +1,20 @@
 {
-  "name": "frontend",
+  "name": "Q2-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --hmr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "serve": "http-server ./dist/Q2-frontend -p 8080",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
-    "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
     "@angular/core": "^16.2.0",
     "@angular/forms": "^16.2.0",
-    "@angular/material": "^16.2.14",
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
