@@ -6,7 +6,8 @@
     "start": "ng serve --hmr",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve": "npx http-server ./dist/Q2-frontend"
   },
   "private": true,
   "dependencies": {

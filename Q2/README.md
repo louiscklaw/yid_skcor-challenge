@@ -1,10 +1,12 @@
 # Q2Frontend
 
-![](./_doc/test_w_message.png)
+<img src="./_doc/index.png" height="400">
+
+## background
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
-please see _docs for some sample screen capture
+please see \_docs for some sample screen capture
 
 This is a plain webpage with responsive feature for demo. More complex design can be built upon request.
 
@@ -33,7 +35,7 @@ $ npm run start
 # browse http://localhost:4200
 ```
 
-## Build (production)
+## take it to production
 
 ### backend
 
@@ -49,7 +51,7 @@ $ npm run start
 $ npm install -g http-server
 $ npm i # install dependecies
 $ npm run serve
-# browse http://localhost:8080
+# browse http://localhost:8080/
 ```
 
 > In your README.md, answer these questions:
@@ -74,5 +76,7 @@ $ npm run serve
    A:
 
    // TODO: better general error handling, need further clarification. may be 500 ?
+   currently only 429 as the only error exit for UI.
 
    // TODO: refactor backend server port `3000` to environment variable ? docker ?
+   depends on the actual production environment. different environment have different implementation of choice.
